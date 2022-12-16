@@ -12,10 +12,12 @@ namespace WallpaperSlideshow
         public Form1()
         {
             InitializeComponent();
+            var iconHandle = Properties.Resources.framed_picture_icon.GetHicon();
+            this.Icon = Icon.FromHandle(iconHandle);
+
             _trayIcon.Text = "Wallpaper Slideshow";
             _trayIcon.Visible = true;
             // https://stackoverflow.com/a/1870823
-            var iconHandle = Properties.Resources.framed_picture_icon.GetHicon();
             _trayIcon.Icon = Icon.FromHandle(iconHandle);
             #region iconContextMenu
             _trayIcon.ContextMenuStrip = new();

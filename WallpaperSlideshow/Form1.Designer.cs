@@ -154,6 +154,7 @@
             this.Controls.Add(this.numSleepSeconds);
             this.Controls.Add(this.btnSelectPath);
             this.Controls.Add(this.txtPath);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Wallpaper Slideshow";
