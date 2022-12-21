@@ -3,7 +3,7 @@
     internal class Slideshow
     {
         private Thread _thread;
-        private bool _paused = false;
+        private bool _paused = true;
 
         public string LastImage
         {
