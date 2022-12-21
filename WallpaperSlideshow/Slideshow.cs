@@ -28,7 +28,11 @@
                 }
                 return secs;
             }
-            set => LocalStorage.SetItem("sleepSeconds", value);
+            set
+            {
+                LocalStorage.SetItem("sleepSeconds", value);
+                _thread.Interrupt();
+            }
         }
 
         public bool Paused { get => _paused; set => _paused = value; }
@@ -52,7 +56,7 @@
             _thread.Join();
         }
 
-        public void NextWallpaper()
+        private void nextWallpaper()
         {
             string lastImage = LastImage;
             string[] candidates = Directory.GetFiles(Path)
@@ -68,6 +72,12 @@
             Wallpaper.SetWallpaper(name);
         }
 
+        public void NextWallpaper()
+        {
+            nextWallpaper();
+            _thread.Interrupt();
+        }
+
         private void runThread()
         {
             while (true)
@@ -77,7 +87,7 @@
                     Thread.Sleep(SleepSeconds * 1000);
                     if (!_paused)
                     {
-                        NextWallpaper();
+                        nextWallpaper();
                     }
                 }
                 catch (ThreadInterruptedException)
